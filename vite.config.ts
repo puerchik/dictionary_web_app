@@ -11,7 +11,9 @@ export default defineConfig({
   ],
   base: "/dictionary-web-app/",
   resolve: {
-    alias: {},
+    alias: {
+      app: "/src/app",
+    },
   },
   server: {
     port: 3000,
