@@ -1,4 +1,4 @@
-export type Response = {
+export type ResponseWord = {
   word: string
   phonetic: string
   phonetics: Phonetic[]
@@ -36,6 +36,6 @@ type Definition = {
 type DefinitionExtra = Pick<Definition, 'definition' | 'example'>
 type MeaningExtra = Omit<Meaning, 'definitions'> & { definitions: DefinitionExtra[] }
 
-export type Word = Pick<Response, 'word' | 'phonetics' | 'sourceUrls'> & {
+export type Word = Pick<ResponseWord, 'word' | 'phonetics' | 'sourceUrls'> & {
   meanings: MeaningExtra[]
 }
