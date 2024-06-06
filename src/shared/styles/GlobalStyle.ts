@@ -82,8 +82,6 @@ body {
   font-style: normal;
   margin: 0;
 
-  background-color: #8b8b8b;
-
   min-height: 100vh;
 }
   
