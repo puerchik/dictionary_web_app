@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { ChangeEvent } from 'react'
 
 import NativeSelect from '@mui/material/NativeSelect'
 import Switch from '@mui/material/Switch'
@@ -10,6 +11,10 @@ import LogoIcon from 'shared/ui/icons/dictionary.svg'
 import MoonIcon from 'shared/ui/icons/moon.svg'
 
 export const Header = () => {
+  const themeSelectHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(e.currentTarget.checked)
+  }
+
   return (
     <>
       <S.Header>
@@ -27,7 +32,7 @@ export const Header = () => {
             <option value={'sans-serif'}>Sans serif</option>
           </S.SerifSelect>
           <S.FlexWrapper>
-            <S.ThemeSelect />
+            <S.ThemeSelect onChange={themeSelectHandler} />
             <S.ThemeSelectImage />
           </S.FlexWrapper>
         </S.HeaderInner>

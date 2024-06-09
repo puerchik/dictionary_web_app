@@ -5,7 +5,7 @@ import { store } from 'app/store'
 
 import App from 'app/App'
 
-import { muiSerifTheme } from 'shared/themes/MuiTheme'
+import { muiSerifTheme } from 'shared/themes/MuiThemes'
 import MuiThemeProvider from '@mui/material/styles/ThemeProvider'
 
 const container = document.getElementById('root')!
