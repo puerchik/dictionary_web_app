@@ -75,7 +75,15 @@ const S = {
   SerifSelect: styled(NativeSelect)`
     margin-left: auto;
 
+    & select:focus {
+      background-color: inherit;
+    }
+
     &::before {
+      content: none !important;
+    }
+
+    &::after {
       content: none !important;
     }
   `,

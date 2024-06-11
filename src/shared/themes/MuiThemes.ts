@@ -1,11 +1,5 @@
 import createTheme from '@mui/material/styles/createTheme'
 
-export const muiSerifTheme = createTheme({
-  typography: {
-    fontFamily: '"Vollkorn", serif',
-  },
-})
-
 export const muiLightTheme = createTheme({
   palette: {
     mode: 'light',
