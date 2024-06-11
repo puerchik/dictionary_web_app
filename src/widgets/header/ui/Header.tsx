@@ -1,5 +1,7 @@
-import styled from 'styled-components'
 import { ChangeEvent } from 'react'
+import { useAppDispatch } from 'shared/hooks/reduxHooks'
+import { themeAction } from 'shared/themes/themesSlice'
+import styled from 'styled-components'
 
 import NativeSelect from '@mui/material/NativeSelect'
 import Switch from '@mui/material/Switch'
@@ -9,8 +11,7 @@ import { Flex } from 'shared/styles/common'
 
 import LogoIcon from 'shared/ui/icons/dictionary.svg'
 import MoonIcon from 'shared/ui/icons/moon.svg'
-import { useAppDispatch } from 'shared/hooks/reduxHooks'
-import { themeAction } from 'shared/themes/themesSlice'
+import { fontAction } from 'shared/themes/fontSlice'
 
 export const Header = () => {
   const dispatch = useAppDispatch()
@@ -19,12 +20,20 @@ export const Header = () => {
     dispatch(themeAction.setTheme({ theme: e.currentTarget.checked ? 'dark' : 'light' }))
   }
 
+  const serifSelectHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+    const font = e.currentTarget.value
+    if (font === 'serif' || font === 'sans-serif') {
+      dispatch(fontAction.setFont({ font }))
+    }
+  }
+
   return (
     <>
       <S.Header>
         <S.HeaderInner>
           <S.Logo />
           <S.SerifSelect
+            onChange={serifSelectHandler}
             defaultValue={30}
             inputProps={{
               name: 'font-family',

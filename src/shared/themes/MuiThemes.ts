@@ -8,16 +8,18 @@ export const muiSerifTheme = createTheme({
 
 export const muiLightTheme = createTheme({
   palette: {
-    text: {
-      primary: '#121620',
+    mode: 'light',
+    primary: {
+      main: '#121620',
     },
   },
 })
 
 export const muiDarkTheme = createTheme({
   palette: {
-    text: {
-      primary: '#f1f1f1',
+    mode: 'dark',
+    primary: {
+      main: '#f1f1f1',
     },
   },
 })
