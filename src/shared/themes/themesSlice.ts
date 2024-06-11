@@ -1,14 +1,12 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-type Themes = {
-  body: string
-  text: string
+export type Themes = {
+  theme: 'light' | 'dark'
 }
 
 const initialState: Themes[] = [
   {
-    body: '#f1f1f1',
-    text: '#121620',
+    theme: 'light',
   },
 ]
 

@@ -5,3 +5,19 @@ export const muiSerifTheme = createTheme({
     fontFamily: '"Vollkorn", serif',
   },
 })
+
+export const muiLightTheme = createTheme({
+  palette: {
+    text: {
+      primary: '#121620',
+    },
+  },
+})
+
+export const muiDarkTheme = createTheme({
+  palette: {
+    text: {
+      primary: '#f1f1f1',
+    },
+  },
+})

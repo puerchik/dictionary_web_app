@@ -5,18 +5,13 @@ import { store } from 'app/store'
 
 import App from 'app/App'
 
-import { muiSerifTheme } from 'shared/themes/MuiThemes'
-import MuiThemeProvider from '@mui/material/styles/ThemeProvider'
-
 const container = document.getElementById('root')!
 const root = ReactDOM.createRoot(container)
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <MuiThemeProvider theme={muiSerifTheme}>
-        <App />
-      </MuiThemeProvider>
+      <App />
     </Provider>
   </React.StrictMode>
 )

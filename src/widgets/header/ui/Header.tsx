@@ -9,10 +9,14 @@ import { Flex } from 'shared/styles/common'
 
 import LogoIcon from 'shared/ui/icons/dictionary.svg'
 import MoonIcon from 'shared/ui/icons/moon.svg'
+import { useAppDispatch } from 'shared/hooks/reduxHooks'
+import { themeAction } from 'shared/themes/themesSlice'
 
 export const Header = () => {
+  const dispatch = useAppDispatch()
+
   const themeSelectHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.currentTarget.checked)
+    dispatch(themeAction.setTheme({ theme: e.currentTarget.checked ? 'dark' : 'light' }))
   }
 
   return (
@@ -20,7 +24,6 @@ export const Header = () => {
       <S.Header>
         <S.HeaderInner>
           <S.Logo />
-
           <S.SerifSelect
             defaultValue={30}
             inputProps={{
