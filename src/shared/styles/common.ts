@@ -23,11 +23,18 @@ export const ResetButton = css`
   background-color: transparent;
   border: none;
 `
-export const PlayIcon = css`
+export const PlayImg = css`
   width: 0px;
   height: 0px;
   border-style: solid;
-  border-width: 10px 0 10px 20px;
+  border-width: 18px 0 18px 30px;
   border-color: transparent transparent transparent #9b3de9;
   transform: rotate(0deg);
+`
+
+export const PauseImg = css`
+  width: 20px;
+  height: 30px;
+  border-left: 5px solid #9b3de9;
+  border-right: 5px solid #9b3de9;
 `

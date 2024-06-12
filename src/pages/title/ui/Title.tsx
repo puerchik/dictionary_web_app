@@ -3,7 +3,7 @@ import { styled } from 'styled-components'
 
 import { Container } from 'shared/styles/Conatiner'
 import { UseAppSelector } from 'shared/hooks/reduxHooks'
-import { Flex, PlayIcon, ResetButton, VisuallyHidden } from 'shared/styles/common'
+import { Flex, PauseImg, PlayImg, ResetButton, VisuallyHidden } from 'shared/styles/common'
 
 export const Title = () => {
   const word = UseAppSelector(state => state.word[0].word)
@@ -41,8 +41,12 @@ export const Title = () => {
           <audio
             src={audio}
             ref={audioRef}
+            onEnded={() => setIsPlaying(!isPlaying)}
           ></audio>
-          <button onClick={audioControlsHandler}>
+          <button
+            title="Play audio"
+            onClick={audioControlsHandler}
+          >
             <span>Play audio</span>
           </button>
         </AudioWrapper>
@@ -86,10 +90,11 @@ const AudioWrapper = styled.div<{ $isPlaying: boolean }>`
       content: '';
       position: absolute;
       top: 50%;
-      left: 55%;
+      left: ${props => (props.$isPlaying ? `50%` : `55%`)};
       translate: -50% -50%;
+      transition: 0.2s;
 
-      ${props => (props.$isPlaying ? `` : PlayIcon)}
+      ${props => (props.$isPlaying ? PauseImg : PlayImg)}
     }
 
     &:hover {

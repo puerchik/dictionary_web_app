@@ -66,6 +66,7 @@ export const SearchInput = () => {
                   <S.SearchButton
                     $theme={theme}
                     type="submit"
+                    title="Find the word"
                   >
                     <img
                       height="25"
