@@ -15,7 +15,10 @@ const App = () => {
   return (
     <>
       <Normalize />
-      <GlobalStyle $theme={theme} />
+      <GlobalStyle
+        $theme={theme}
+        $font={font}
+      />
 
       <MuiThemeProvider theme={theme === 'light' ? muiLightTheme : muiDarkTheme}>
         <MuiThemeProvider

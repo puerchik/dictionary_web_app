@@ -10,8 +10,9 @@ import VollkornRegular from 'shared/fonts/Vollkorn-Regular.woff2'
 import VollkornBold from 'shared/fonts/Vollkorn-Bold.woff2'
 import VollkornRegularItalic from 'shared/fonts/Vollkorn-Italic.woff2'
 import VollkornBoldItalic from 'shared/fonts/Vollkorn-BoldItalic.woff2'
+import { Font } from 'shared/themes/fontSlice'
 
-export const GlobalStyle = createGlobalStyle<{ $theme: Themes['theme'] }>`
+export const GlobalStyle = createGlobalStyle<{ $theme: Themes['theme']; $font: Font['font'] }>`
 body {  
   @font-face {
     font-family: "Arimo";
@@ -78,7 +79,8 @@ body {
   }
 
 
-  font-family: 'Vollkorn', serif;
+  font-family: ${props =>
+    props.$font === 'serif' ? "'Vollkorn', serif" : "'Arimo', sans-serif"} ;
   line-height: 1.5;
   font-weight: 400;
   font-style: normal;

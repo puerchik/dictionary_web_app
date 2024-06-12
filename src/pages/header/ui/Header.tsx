@@ -79,10 +79,7 @@ const S = {
       background-color: inherit;
     }
 
-    &::before {
-      content: none !important;
-    }
-
+    &::before,
     &::after {
       content: none !important;
     }

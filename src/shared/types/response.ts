@@ -36,6 +36,6 @@ type Definition = {
 type DefinitionExtra = Pick<Definition, 'definition' | 'example'>
 type MeaningExtra = Omit<Meaning, 'definitions'> & { definitions: DefinitionExtra[] }
 
-export type Word = Pick<ResponseWord, 'word' | 'phonetics' | 'sourceUrls'> & {
+export type Word = Pick<ResponseWord, 'word' | 'phonetic' | 'phonetics' | 'sourceUrls'> & {
   meanings: MeaningExtra[]
 }

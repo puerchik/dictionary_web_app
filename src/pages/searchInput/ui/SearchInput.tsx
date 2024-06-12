@@ -1,9 +1,11 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { css, styled } from 'styled-components'
 
-import { UseAppSelector } from 'shared/hooks/reduxHooks'
+import { UseAppSelector, useAppDispatch } from 'shared/hooks/reduxHooks'
+import { dictionaryWordActions } from 'pages/word/model/dictionaryWordSlice'
 import { getWord } from 'shared/api'
 import { Themes } from 'shared/themes/themesSlice'
+import { Word } from 'shared/types/response'
 
 import InputAdornment from '@mui/material/InputAdornment'
 import TextField from '@mui/material/TextField'
@@ -19,6 +21,7 @@ type Input = {
 
 export const SearchInput = () => {
   const theme = UseAppSelector(state => state.theme)[0]['theme']
+  const dispatch = useAppDispatch()
   const { register, handleSubmit } = useForm<Input>()
 
   const onSubmit: SubmitHandler<Input> = data => {
@@ -27,6 +30,24 @@ export const SearchInput = () => {
 
   const setWord = async (word: string) => {
     const res = await getWord(word)
+    const [data] = res.data
+    const requiredPropertiesWord: Word = {
+      word: data.word,
+      phonetics: data.phonetics.map(ph => ({
+        text: ph.text,
+        audio: ph.audio,
+      })),
+      phonetic: data.phonetic,
+      sourceUrls: data.sourceUrls,
+      meanings: data.meanings.map(mn => ({
+        ...mn,
+        definitions: mn.definitions.map(def => ({
+          definition: def.definition,
+          example: def.example ? def.example : '',
+        })),
+      })),
+    }
+    dispatch(dictionaryWordActions.setWord(requiredPropertiesWord))
     console.log(res.data[0])
   }
   return (

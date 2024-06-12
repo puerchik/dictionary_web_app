@@ -6,6 +6,7 @@ const initialState: Word[] = [
   {
     word: '',
     phonetics: [{ text: '', audio: '' }],
+    phonetic: '',
     meanings: [
       {
         partOfSpeech: '',
