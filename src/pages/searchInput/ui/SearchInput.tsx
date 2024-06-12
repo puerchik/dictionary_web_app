@@ -52,7 +52,7 @@ export const SearchInput = () => {
   }
   return (
     <>
-      <Container>
+      <S.FormWrapper>
         <form onSubmit={handleSubmit(onSubmit)}>
           <S.SearchInput
             $theme={theme}
@@ -79,12 +79,16 @@ export const SearchInput = () => {
             variant="standard"
           />
         </form>
-      </Container>
+      </S.FormWrapper>
     </>
   )
 }
 
 const S = {
+  FormWrapper: styled(Container)`
+    margin-bottom: 50px;
+  `,
+
   SearchInput: styled(TextField)<{ $theme: Themes['theme'] }>`
     width: 100%;
 
@@ -93,6 +97,7 @@ const S = {
       padding: 10px;
       padding-right: 53px;
       border-radius: 5px;
+      font-weight: 700;
     }
 
     & div::after,
