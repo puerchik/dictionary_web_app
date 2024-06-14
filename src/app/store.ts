@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { dictionaryWordReducer } from 'pages/word/model/dictionaryWordSlice'
+import { dictionaryWordReducer } from 'components/word/model/dictionaryWordSlice'
 import { fontReducer } from 'shared/themes/fontSlice'
 import { themeReducer } from 'shared/themes/themesSlice'
 

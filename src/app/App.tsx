@@ -1,4 +1,4 @@
-import { DictionaryWord } from 'pages/word'
+import { DictionaryWord } from 'components/word'
 import { UseAppSelector } from 'shared/hooks/reduxHooks'
 
 import { muiDarkTheme, muiLightTheme } from 'shared/themes/MuiThemes'

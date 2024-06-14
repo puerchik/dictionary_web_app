@@ -2,7 +2,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { css, styled } from 'styled-components'
 
 import { UseAppSelector, useAppDispatch } from 'shared/hooks/reduxHooks'
-import { dictionaryWordActions } from 'pages/word/model/dictionaryWordSlice'
+import { dictionaryWordActions } from 'components/word/model/dictionaryWordSlice'
 import { getWord } from 'shared/api'
 import { Themes } from 'shared/themes/themesSlice'
 import { Word } from 'shared/types/response'
