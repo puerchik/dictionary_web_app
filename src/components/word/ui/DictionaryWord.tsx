@@ -20,7 +20,7 @@ export const DictionaryWord = () => {
         <SearchInput />
         {homeScreen ? (
           <S.ScreenStatus>
-            <p>Please enter the word in the form above</p>{' '}
+            <p>Please enter the word in the form above</p>
           </S.ScreenStatus>
         ) : !error ? (
           <>
@@ -29,17 +29,15 @@ export const DictionaryWord = () => {
           </>
         ) : error === 404 ? (
           <S.ScreenStatus>
-            {' '}
-            <p>Word not found</p>{' '}
+            <p>Word not found</p>
           </S.ScreenStatus>
         ) : (
           <S.ScreenStatus>
-            {' '}
             <p> Error</p>
           </S.ScreenStatus>
         )}
       </main>
-      <Footer />
+      {!error && !homeScreen && <Footer />}
     </>
   )
 }

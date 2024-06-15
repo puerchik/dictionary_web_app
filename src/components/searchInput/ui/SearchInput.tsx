@@ -52,6 +52,7 @@ export const SearchInput = () => {
         })),
       }
       dispatch(dictionaryWordActions.setWord(requiredPropertiesWord))
+      dispatch(screenStatusActions.setError(false))
       dispatch(screenStatusActions.setScreen(false))
     } catch (error) {
       if (error instanceof AxiosError) {
