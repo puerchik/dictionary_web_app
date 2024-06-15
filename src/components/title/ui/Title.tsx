@@ -59,6 +59,7 @@ const TitleWrapper = styled(Container)`
   ${Flex}
 
   justify-content: space-between;
+  margin-bottom: 50px;
 `
 
 const Text = styled.div``
