@@ -53,8 +53,8 @@ const S = {
   MeaningsWarpper: styled(Container)``,
 
   PartOfSpeech: styled.span`
-    position: relative;
-    display: block;
+    ${Flex}
+    column-gap: 20px;
     font-weight: 700;
     font-style: italic;
     font-size: 18px;
@@ -62,9 +62,10 @@ const S = {
 
     &::after {
       content: '';
-      position: absolute;
+      position: relative;
+      display: block;
       height: 1px;
-      width: 90%;
+      width: 100%;
       right: 0;
       top: 50%;
       transform: translateY(-50%);

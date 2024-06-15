@@ -29,77 +29,88 @@ export const Title = () => {
       setIsPlaying(!isPlaying)
     }
   }
+  console.log(audio)
 
   return (
     <>
-      <TitleWrapper>
-        <Text>
-          <MainTitle>{word}</MainTitle>
-          <Transcription>{phonetic}</Transcription>
-        </Text>
-        <AudioWrapper $isPlaying={isPlaying}>
+      <S.TitleWrapper>
+        <S.Text>
+          <S.MainTitle>{word}</S.MainTitle>
+          <S.Transcription>{phonetic}</S.Transcription>
+        </S.Text>
+        <S.AudioWrapper $isPlaying={isPlaying}>
           <audio
             src={audio}
             ref={audioRef}
             onEnded={() => setIsPlaying(!isPlaying)}
           ></audio>
-          <button
-            title="Play audio"
-            onClick={audioControlsHandler}
-          >
-            <span>Play audio</span>
-          </button>
-        </AudioWrapper>
-      </TitleWrapper>
+          {!!audio ? (
+            <button
+              title="Play audio"
+              onClick={audioControlsHandler}
+              disabled={!audio}
+            >
+              <span>Play audio</span>
+            </button>
+          ) : (
+            <S.NoAudio>Audio not available</S.NoAudio>
+          )}
+        </S.AudioWrapper>
+      </S.TitleWrapper>
     </>
   )
 }
 
-const TitleWrapper = styled(Container)`
-  ${Flex}
+const S = {
+  TitleWrapper: styled(Container)`
+    ${Flex}
 
-  justify-content: space-between;
-  margin-bottom: 50px;
-`
+    justify-content: space-between;
+    margin-bottom: 50px;
+  `,
 
-const Text = styled.div``
+  Text: styled.div``,
 
-const MainTitle = styled.h1`
-  font-size: 36px;
-  font-weight: 700;
-`
+  MainTitle: styled.h1`
+    font-size: 36px;
+    font-weight: 700;
+  `,
 
-const Transcription = styled.p`
-  color: #a864cb;
-  font-size: 18px;
-`
+  Transcription: styled.p`
+    color: #a864cb;
+    font-size: 18px;
+  `,
 
-const AudioWrapper = styled.div<{ $isPlaying: boolean }>`
-  & button {
-    & span {
-      ${VisuallyHidden}
-    }
-    ${ResetButton}
-    position: relative;
-    width: 70px;
-    aspect-ratio: 1;
-    background-color: #e9d0fa;
-    border-radius: 50%;
-    transition: 0.2s;
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: ${props => (props.$isPlaying ? `50%` : `55%`)};
-      translate: -50% -50%;
+  AudioWrapper: styled.div<{ $isPlaying: boolean }>`
+    & button {
+      & span {
+        ${VisuallyHidden}
+      }
+      ${ResetButton}
+      position: relative;
+      width: 70px;
+      aspect-ratio: 1;
+      background-color: #e9d0fa;
+      border-radius: 50%;
       transition: 0.2s;
 
-      ${props => (props.$isPlaying ? PauseImg : PlayImg)}
-    }
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: ${props => (props.$isPlaying ? `50%` : `55%`)};
+        translate: -50% -50%;
+        transition: 0.2s;
 
-    &:hover {
-      background-color: #dfbbf7;
+        ${props => (props.$isPlaying ? PauseImg : PlayImg)}
+      }
+
+      &:hover {
+        background-color: #dfbbf7;
+      }
     }
-  }
-`
+  `,
+  NoAudio: styled.p`
+    font-size: 18px;
+  `,
+}
