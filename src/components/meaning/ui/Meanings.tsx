@@ -3,6 +3,7 @@ import { styled } from 'styled-components'
 import { UseAppSelector } from 'shared/hooks/reduxHooks'
 
 import { Container } from 'shared/styles/Conatiner'
+import React from 'react'
 
 export const Meanings = () => {
   const meaningsArr = UseAppSelector(state => state.word)[0]['meanings']
@@ -12,26 +13,26 @@ export const Meanings = () => {
   return (
     <>
       <S.MeaningsWarpper>
-        {meaningsArr.map(meaning => {
+        {meaningsArr.map((meaning, i) => {
           return (
-            <>
+            <React.Fragment key={i}>
               <S.PartOfSpeech>{meaning.partOfSpeech}</S.PartOfSpeech>
               <S.Title>Meaning</S.Title>
               <S.DefinitionsList>
-                {meaning.definitions.map(definition => {
+                {meaning.definitions.map((definition, i) => {
                   return (
-                    <>
+                    <React.Fragment key={i}>
                       <S.DefinitionsItem>
                         <p>{definition.definition}</p>
                       </S.DefinitionsItem>
                       {definition.example && (
                         <S.DefinitionsExample>{definition.example}</S.DefinitionsExample>
                       )}
-                    </>
+                    </React.Fragment>
                   )
                 })}
               </S.DefinitionsList>
-            </>
+            </React.Fragment>
           )
         })}
       </S.MeaningsWarpper>
