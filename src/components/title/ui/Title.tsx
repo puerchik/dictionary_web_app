@@ -29,7 +29,6 @@ export const Title = () => {
       setIsPlaying(!isPlaying)
     }
   }
-  console.log(audio)
 
   return (
     <>

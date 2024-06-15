@@ -1,4 +1,5 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { AxiosError } from 'axios'
 import { css, styled } from 'styled-components'
 
 import { UseAppSelector, useAppDispatch } from 'shared/hooks/reduxHooks'
@@ -14,6 +15,7 @@ import { Container } from 'shared/styles/Conatiner'
 import { ResetButton } from 'shared/styles/common'
 
 import searchButton from 'shared/ui/icons/search.svg'
+import { useState } from 'react'
 
 type Input = {
   word: string
@@ -23,31 +25,40 @@ export const SearchInput = () => {
   const theme = UseAppSelector(state => state.theme)[0]['theme']
   const dispatch = useAppDispatch()
   const { register, handleSubmit } = useForm<Input>()
+  const [error, setError] = useState<boolean | number>(false)
 
   const onSubmit: SubmitHandler<Input> = data => {
     setWord(data.word)
   }
 
   const setWord = async (word: string) => {
-    const res = await getWord(word)
-    const [data] = res.data
-    const requiredPropertiesWord: Word = {
-      word: data.word,
-      phonetics: data.phonetics.map(ph => ({
-        text: ph.text,
-        audio: ph.audio,
-      })),
-      phonetic: data.phonetic,
-      sourceUrls: data.sourceUrls,
-      meanings: data.meanings.map(mn => ({
-        ...mn,
-        definitions: mn.definitions.map(def => ({
-          definition: def.definition,
-          example: def.example ? def.example : '',
+    try {
+      const res = await getWord(word)
+      const [data] = res.data
+      const requiredPropertiesWord: Word = {
+        word: data.word,
+        phonetics: data.phonetics.map(ph => ({
+          text: ph.text,
+          audio: ph.audio,
         })),
-      })),
+        phonetic: data.phonetic,
+        sourceUrls: data.sourceUrls,
+        meanings: data.meanings.map(mn => ({
+          ...mn,
+          definitions: mn.definitions.map(def => ({
+            definition: def.definition,
+            example: def.example ? def.example : '',
+          })),
+        })),
+      }
+      dispatch(dictionaryWordActions.setWord(requiredPropertiesWord))
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        error.response?.status ? setError(error.response?.status) : setError(true)
+      } else {
+        setError(true)
+      }
     }
-    dispatch(dictionaryWordActions.setWord(requiredPropertiesWord))
   }
   return (
     <>
