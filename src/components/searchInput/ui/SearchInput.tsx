@@ -48,7 +48,6 @@ export const SearchInput = () => {
       })),
     }
     dispatch(dictionaryWordActions.setWord(requiredPropertiesWord))
-    console.log(res.data[0])
   }
   return (
     <>
