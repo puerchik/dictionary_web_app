@@ -3,6 +3,8 @@ import { useAppDispatch } from 'shared/hooks/reduxHooks'
 import { themeAction } from 'shared/themes/themesSlice'
 import styled from 'styled-components'
 
+import { fontAction } from 'shared/themes/fontSlice'
+
 import NativeSelect from '@mui/material/NativeSelect'
 import Switch from '@mui/material/Switch'
 
@@ -11,7 +13,7 @@ import { Flex } from 'shared/styles/common'
 
 import LogoIcon from 'shared/ui/icons/dictionary.svg'
 import MoonIcon from 'shared/ui/icons/moon.svg'
-import { fontAction } from 'shared/themes/fontSlice'
+import SunIcon from 'shared/ui/icons/sun.svg'
 
 export const Header = () => {
   const dispatch = useAppDispatch()
@@ -44,8 +46,9 @@ export const Header = () => {
             <option value={'sans-serif'}>Sans serif</option>
           </S.SerifSelect>
           <S.FlexWrapper>
-            <S.ThemeSelect onChange={themeSelectHandler} />
-            <S.ThemeSelectImage />
+            <S.ThemeSelectImage src={SunIcon} />
+            <Switch onChange={themeSelectHandler} />
+            <S.ThemeSelectImage src={MoonIcon} />
           </S.FlexWrapper>
         </S.HeaderInner>
       </S.Header>
@@ -85,11 +88,7 @@ const S = {
     }
   `,
 
-  ThemeSelect: styled(Switch)``,
-
-  ThemeSelectImage: styled.img.attrs(_ => ({
-    src: MoonIcon,
-  }))`
+  ThemeSelectImage: styled.img`
     height: 25px;
     aspect-ratio: 1;
   `,
