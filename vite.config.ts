@@ -4,7 +4,7 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/dictionary-web-app',
+  base: '/dictionary_web_app',
   resolve: {
     alias: {
       app: path.resolve(__dirname, './src/app'),
