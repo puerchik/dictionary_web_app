@@ -4,6 +4,8 @@ import { css, styled } from 'styled-components'
 
 import { UseAppSelector, useAppDispatch } from 'shared/hooks/reduxHooks'
 import { dictionaryWordActions } from 'components/word/model/dictionaryWordSlice'
+import { screenStatusActions } from 'components/word/model/screenStatusSlice'
+
 import { getWord } from 'shared/api'
 import { Themes } from 'shared/themes/themesSlice'
 import { Word } from 'shared/types/response'
@@ -15,7 +17,6 @@ import { Container } from 'shared/styles/Conatiner'
 import { ResetButton } from 'shared/styles/common'
 
 import searchButton from 'shared/ui/icons/search.svg'
-import { useState } from 'react'
 
 type Input = {
   word: string
@@ -23,9 +24,9 @@ type Input = {
 
 export const SearchInput = () => {
   const theme = UseAppSelector(state => state.theme)[0]['theme']
+  const error = UseAppSelector(state => state.screenStatus.error)
   const dispatch = useAppDispatch()
   const { register, handleSubmit } = useForm<Input>()
-  const [error, setError] = useState<boolean | number>(false)
 
   const onSubmit: SubmitHandler<Input> = data => {
     setWord(data.word)
@@ -33,6 +34,8 @@ export const SearchInput = () => {
 
   const setWord = async (word: string) => {
     try {
+      console.log('try')
+
       const res = await getWord(word)
       const [data] = res.data
       const requiredPropertiesWord: Word = {
@@ -54,9 +57,11 @@ export const SearchInput = () => {
       dispatch(dictionaryWordActions.setWord(requiredPropertiesWord))
     } catch (error) {
       if (error instanceof AxiosError) {
-        error.response?.status ? setError(error.response?.status) : setError(true)
+        error.response?.status
+          ? dispatch(screenStatusActions.setError(error.response?.status))
+          : dispatch(screenStatusActions.setError(true))
       } else {
-        setError(true)
+        dispatch(screenStatusActions.setError(true))
       }
     }
   }
