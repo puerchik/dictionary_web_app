@@ -24,7 +24,6 @@ type Input = {
 
 export const SearchInput = () => {
   const theme = UseAppSelector(state => state.theme)[0]['theme']
-  const error = UseAppSelector(state => state.screenStatus.error)
   const dispatch = useAppDispatch()
   const { register, handleSubmit } = useForm<Input>()
 
@@ -34,8 +33,6 @@ export const SearchInput = () => {
 
   const setWord = async (word: string) => {
     try {
-      console.log('try')
-
       const res = await getWord(word)
       const [data] = res.data
       const requiredPropertiesWord: Word = {
@@ -55,13 +52,19 @@ export const SearchInput = () => {
         })),
       }
       dispatch(dictionaryWordActions.setWord(requiredPropertiesWord))
+      dispatch(screenStatusActions.setScreen(false))
     } catch (error) {
       if (error instanceof AxiosError) {
-        error.response?.status
-          ? dispatch(screenStatusActions.setError(error.response?.status))
-          : dispatch(screenStatusActions.setError(true))
+        if (error.response?.status) {
+          dispatch(screenStatusActions.setError(error.response?.status))
+          dispatch(screenStatusActions.setScreen(false))
+        } else {
+          dispatch(screenStatusActions.setError(true))
+          dispatch(screenStatusActions.setScreen(false))
+        }
       } else {
         dispatch(screenStatusActions.setError(true))
+        dispatch(screenStatusActions.setScreen(false))
       }
     }
   }

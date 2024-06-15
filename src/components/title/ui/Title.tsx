@@ -1,14 +1,17 @@
 import { MutableRefObject, useRef, useState } from 'react'
 import { styled } from 'styled-components'
 
-import { Container } from 'shared/styles/Conatiner'
 import { UseAppSelector } from 'shared/hooks/reduxHooks'
+
+import { Container } from 'shared/styles/Conatiner'
 import { Flex, PauseImg, PlayImg, ResetButton, VisuallyHidden } from 'shared/styles/common'
 
 export const Title = () => {
   const word = UseAppSelector(state => state.word[0].word)
   const phoneticTranscription = UseAppSelector(state => state.word[0].phonetic)
   const phonetics = UseAppSelector(state => state.word[0].phonetics)
+  const error = UseAppSelector(state => state.screenStatus.error)
+  const homeScreen = UseAppSelector(state => state.screenStatus.homeScreen)
 
   const phonetic = phoneticTranscription
     ? phoneticTranscription
@@ -33,28 +36,38 @@ export const Title = () => {
   return (
     <>
       <S.TitleWrapper>
-        <S.Text>
-          <S.MainTitle>{word}</S.MainTitle>
-          <S.Transcription>{phonetic}</S.Transcription>
-        </S.Text>
-        <S.AudioWrapper $isPlaying={isPlaying}>
-          <audio
-            src={audio}
-            ref={audioRef}
-            onEnded={() => setIsPlaying(!isPlaying)}
-          ></audio>
-          {!!audio ? (
-            <button
-              title="Play audio"
-              onClick={audioControlsHandler}
-              disabled={!audio}
-            >
-              <span>Play audio</span>
-            </button>
-          ) : (
-            <S.NoAudio>Audio not available</S.NoAudio>
-          )}
-        </S.AudioWrapper>
+        {homeScreen ? (
+          <S.ScreenStatus>Please enter a word in the field above</S.ScreenStatus>
+        ) : !error ? (
+          <>
+            <S.Text>
+              <S.MainTitle>{word}</S.MainTitle>
+              <S.Transcription>{phonetic}</S.Transcription>
+            </S.Text>
+            <S.AudioWrapper $isPlaying={isPlaying}>
+              <audio
+                src={audio}
+                ref={audioRef}
+                onEnded={() => setIsPlaying(!isPlaying)}
+              ></audio>
+              {!!audio ? (
+                <button
+                  title="Play audio"
+                  onClick={audioControlsHandler}
+                  disabled={!audio}
+                >
+                  <span>Play audio</span>
+                </button>
+              ) : (
+                <S.NoAudio>Audio not available</S.NoAudio>
+              )}
+            </S.AudioWrapper>
+          </>
+        ) : error === 404 ? (
+          <S.ScreenStatus>Word not found</S.ScreenStatus>
+        ) : (
+          <S.ScreenStatus>Error</S.ScreenStatus>
+        )}
       </S.TitleWrapper>
     </>
   )
@@ -66,6 +79,11 @@ const S = {
 
     justify-content: space-between;
     margin-bottom: 50px;
+  `,
+
+  ScreenStatus: styled.p`
+    font-size: 36px;
+    font-weight: 700;
   `,
 
   Text: styled.div``,
