@@ -66,13 +66,20 @@ const S = {
     ${Flex}
 
     column-gap: 30px;
+
+    @media (max-width: 500px) {
+      justify-content: space-between;
+    }
   `,
 
   Logo: styled.img.attrs(_ => ({
     src: LogoIcon,
   }))`
     height: 55px;
-    filter: brightness(1);
+
+    @media (max-width: 500px) {
+      display: none;
+    }
   `,
 
   SerifSelect: styled(NativeSelect)`
@@ -85,6 +92,10 @@ const S = {
     &::before,
     &::after {
       content: none !important;
+    }
+
+    @media (max-width: 500px) {
+      margin: 0;
     }
   `,
 
@@ -107,6 +118,10 @@ const S = {
       width: 1px;
       height: 70%;
       background-color: #808080;
+
+      @media (max-width: 500px) {
+        content: none;
+      }
     }
   `,
 }

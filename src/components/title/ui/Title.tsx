@@ -67,6 +67,12 @@ const S = {
 
     justify-content: space-between;
     margin-bottom: 50px;
+
+    @media (max-width: 500px) {
+      flex-direction: column;
+      align-items: flex-start;
+      row-gap: 20px;
+    }
   `,
 
   Text: styled.div``,
@@ -74,6 +80,10 @@ const S = {
   MainTitle: styled.h1`
     font-size: 36px;
     font-weight: 700;
+
+    @media (max-width: 500px) {
+      font-size: 30px;
+    }
   `,
 
   Transcription: styled.p`

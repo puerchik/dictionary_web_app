@@ -89,7 +89,10 @@ body {
   min-height: 100vh;
 
   background-color: ${props => (props.$theme === 'light' ? '#f1f1f1' : '#121620')};
-  color: ${props => (props.$theme === 'light' ? '#121620' : '#f1f1f1')};
+ 
+  &, & a{
+    color: ${props => (props.$theme === 'light' ? '#121620' : '#f1f1f1')};
+  }
 }
 
 body,

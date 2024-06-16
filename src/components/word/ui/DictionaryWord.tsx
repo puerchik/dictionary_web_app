@@ -59,6 +59,10 @@ const S = {
     p {
       font-size: 36px;
       font-weight: 700;
+
+      @media (max-width: 500px) {
+        font-size: 30px;
+      }
     }
   `,
 }

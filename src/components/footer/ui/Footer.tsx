@@ -38,15 +38,28 @@ const S = {
   FooterInner: styled(Container)`
     ${Flex}
     column-gap: 20px;
+
+    @media (max-width: 500px) {
+      flex-direction: column;
+      align-items: flex-start;
+      row-gap: 10px;
+
+      & a {
+        font-size: 12px;
+      }
+    }
   `,
-  SourceDesc: styled.span``,
+
+  SourceDesc: styled.span`
+    font-size: 18px;
+  `,
+
   SourceLink: styled.a`
     ${Flex}
     align-items: flex-start;
     column-gap: 10px;
     transition: 0.2s;
     font-size: 18px;
-    color: #121620;
 
     & img {
       height: 21px;
