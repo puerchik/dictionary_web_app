@@ -75,7 +75,11 @@ const S = {
     }
   `,
 
-  Text: styled.div``,
+  Text: styled.div`
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+  `,
 
   MainTitle: styled.h1`
     font-size: 36px;
