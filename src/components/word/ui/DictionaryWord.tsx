@@ -15,34 +15,46 @@ export const DictionaryWord = () => {
 
   return (
     <>
-      <Header />
-      <main>
-        <SearchInput />
-        {homeScreen ? (
-          <S.ScreenStatus>
-            <p>Please enter the word in the form above</p>
-          </S.ScreenStatus>
-        ) : !error ? (
-          <>
-            <Title />
-            <Meanings />
-          </>
-        ) : error === 404 ? (
-          <S.ScreenStatus>
-            <p>Word not found</p>
-          </S.ScreenStatus>
-        ) : (
-          <S.ScreenStatus>
-            <p> Error</p>
-          </S.ScreenStatus>
-        )}
-      </main>
-      {!error && !homeScreen && <Footer />}
+      <S.Wrapper>
+        <Header />
+        <S.Main>
+          <SearchInput />
+          {homeScreen ? (
+            <S.ScreenStatus>
+              <p>Please enter the word in the form above</p>
+            </S.ScreenStatus>
+          ) : !error ? (
+            <>
+              <Title />
+              <Meanings />
+            </>
+          ) : error === 404 ? (
+            <S.ScreenStatus>
+              <p>Word not found</p>
+            </S.ScreenStatus>
+          ) : (
+            <S.ScreenStatus>
+              <p> Error</p>
+            </S.ScreenStatus>
+          )}
+        </S.Main>
+        {!error && !homeScreen && <Footer />}
+      </S.Wrapper>
     </>
   )
 }
 
 const S = {
+  Wrapper: styled.div`
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+  `,
+
+  Main: styled.main`
+    flex-grow: 1;
+  `,
+
   ScreenStatus: styled(Container)`
     p {
       font-size: 36px;
