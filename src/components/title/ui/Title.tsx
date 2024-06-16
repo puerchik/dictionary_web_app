@@ -119,8 +119,16 @@ const S = {
         ${props => (props.$isPlaying ? PauseImg : PlayImg)}
       }
 
-      &:hover {
-        background-color: #dfbbf7;
+      @media (hover: hover) {
+        &:hover {
+          background-color: #dfbbf7;
+        }
+      }
+
+      @media (hover: none) {
+        &:active {
+          background-color: #dfbbf7;
+        }
       }
     }
   `,

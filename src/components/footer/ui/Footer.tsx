@@ -67,11 +67,23 @@ const S = {
       transition: opacity 0.5s;
     }
 
-    &:hover {
-      color: #9b3de9;
+    @media (hover: hover) {
+      &:hover {
+        color: #9b3de9;
 
-      & img {
-        opacity: 0.5;
+        & img {
+          opacity: 0.5;
+        }
+      }
+    }
+
+    @media (hover: none) {
+      &:active {
+        color: #9b3de9;
+
+        & img {
+          opacity: 0.5;
+        }
       }
     }
   `,

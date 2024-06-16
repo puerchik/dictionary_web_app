@@ -14,7 +14,7 @@ import InputAdornment from '@mui/material/InputAdornment'
 import TextField from '@mui/material/TextField'
 
 import { Container } from 'shared/styles/Conatiner'
-import { ResetButton } from 'shared/styles/common'
+import { ResetButton, SearchButtonHover } from 'shared/styles/common'
 
 import searchButton from 'shared/ui/icons/search.svg'
 
@@ -139,11 +139,18 @@ const S = {
     border-radius: 5px;
     transition: 0.2s;
 
-    &:hover {
-      background-color: ${props => (props.$theme === 'light' ? `#f1f1f1` : `#ffffff`)};
-      -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
-      -moz-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
-      box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
+    @media (hover: hover) {
+      &:hover {
+        background-color: ${props => (props.$theme === 'light' ? `#f1f1f1` : `#ffffff`)};
+        ${SearchButtonHover}
+      }
+    }
+
+    @media (hover: none) {
+      &:active {
+        background-color: ${props => (props.$theme === 'light' ? `#f1f1f1` : `#ffffff`)};
+        ${SearchButtonHover}
+      }
     }
   `,
 

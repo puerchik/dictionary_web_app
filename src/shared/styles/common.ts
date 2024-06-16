@@ -38,3 +38,9 @@ export const PauseImg = css`
   border-left: 5px solid #9b3de9;
   border-right: 5px solid #9b3de9;
 `
+
+export const SearchButtonHover = css`
+  -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
+`
